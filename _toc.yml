@@ -7,3 +7,4 @@ chapters:
 - file: Intro_HydroThermal
   sections:
   - file: Ch_1/SemiInfinitySpace_240313
+  - file: Ch_1/HalfSpaceTempFluc_240321
