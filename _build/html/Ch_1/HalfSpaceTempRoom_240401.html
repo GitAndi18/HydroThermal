@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Temperature Fluctuations within Rooms &#8212; Lecture on Thermal Contact</title>
+    <title>Temperature Fluctuations in Rooms &#8212; Lecture on Thermal Contact</title>
   
   
   
@@ -161,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../Intro_HydroThermal.html">Dynamic Heat Transport</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="SemiInfinitySpace_240313.html">Semi-infinity Space</a></li>
 <li class="toctree-l2"><a class="reference internal" href="HalfSpaceTempFluc_240321.html">Frost depth in ground</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Temperature Fluctuations within Rooms</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Temperature Fluctuations in Rooms</a></li>
 </ul>
 </li>
 </ul>
@@ -378,7 +378,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Temperature Fluctuations within Rooms</h1>
+    <h1>Temperature Fluctuations in Rooms</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -388,6 +388,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-infinite-half-space">One infinite half-space</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-infinite-half-spaces">Two infinite half-spaces</a></li>
 </ul>
             </nav>
@@ -400,8 +401,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="temperature-fluctuations-within-rooms">
-<h1>Temperature Fluctuations within Rooms<a class="headerlink" href="#temperature-fluctuations-within-rooms" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="temperature-fluctuations-in-rooms">
+<h1>Temperature Fluctuations in Rooms<a class="headerlink" href="#temperature-fluctuations-in-rooms" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -411,6 +412,8 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="one-infinite-half-space">
+<h2>One infinite half-space<a class="headerlink" href="#one-infinite-half-space" title="Permalink to this heading">#</a></h2>
 <p>First, we calculate the relationship between temperature fluctuations in an infinite half-space and the corresponding heat flux density. The following applies:</p>
 <div class="math notranslate nohighlight" id="equation-t">
 <span class="eqno">(1)<a class="headerlink" href="#equation-t" title="Permalink to this equation">#</a></span>\[  \vartheta(x, t) = \Delta \vartheta_0 \, \text{e}^{-\frac{x}{\sigma}} \, \text{cos}(\omega t - \frac{x}{\sigma})\]</div>
@@ -419,7 +422,7 @@ document.write(`
 \[
     q(x, t) = - \lambda \frac{d \vartheta(x, t)}{dx}
 \]</div>
-<p>equation <a class="reference internal" href="#equation-t">(1)</a> becomes</p>
+<p>we get</p>
 <div class="math notranslate nohighlight" id="equation-q">
 <span class="eqno">(2)<a class="headerlink" href="#equation-q" title="Permalink to this equation">#</a></span>\[  q(x, t) = \Delta \vartheta_0 \, b \ \sqrt{\omega} \text{e}^{-\frac{x}{\sigma}} \, \text{cos}(\omega t - \frac{x}{\sigma} + \frac{\pi}{4})\]</div>
 <p>The flux density precedes the temperature changes by <span class="math notranslate nohighlight">\(\pi\)</span>/4. Something similar is already known from the relationship between current and voltage on a capacitor in electrical engineering.</p>
@@ -427,33 +430,42 @@ document.write(`
 <div class="math notranslate nohighlight" id="equation-q0">
 <span class="eqno">(3)<a class="headerlink" href="#equation-q0" title="Permalink to this equation">#</a></span>\[  q_0(t) = \Delta \vartheta_0 \, b \ \sqrt{\omega} \, \text{e}^{i(\omega t  + \frac{\pi}{4})}\]</div>
 <p>We use the following figure to calculate now the temperature fluctuations due to a heat flow density <span class="math notranslate nohighlight">\(q\)</span> via a thermal resistor into the infinite half-space. Although this is a very simple way of obtaining an analytical solution for calculating the room temperature amplitude, the components under consideration should ideally be 2 to 3 penetration depths thick.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="n">Image</span><span class="p">(</span><span class="s2">&quot;UHR_1.jpg&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/6640632f55eccbc026298b1b2b5e196a35f894dafbd0363678c9afabc7dce818.jpeg" src="../_images/6640632f55eccbc026298b1b2b5e196a35f894dafbd0363678c9afabc7dce818.jpeg" />
 </div>
 </div>
-<p>The following equations are valid
-$<span class="math notranslate nohighlight">\( \label{q1}
-    q = \frac{1}{r}\, (\vartheta_i - \vartheta_0) \\
-\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(
+<p>The following equations are valid</p>
+<div class="math notranslate nohighlight">
+\[ 
+    q = \frac{1}{r}\, (\vartheta_i - \vartheta_0) 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
     q = \Delta \vartheta_0 \, b \ \sqrt{\omega} \, \text{e}^{i(\omega t  + \frac{\pi}{4})}
-\)</span>$</p>
+\]</div>
 <p>with <span class="math notranslate nohighlight">\(q(t) = \Delta q \, \text{e}^{i\omega t}\)</span> and <span class="math notranslate nohighlight">\(\vartheta_i(t) = \Delta \vartheta_i \, \text{e}^{i(\omega t + \varphi)}\)</span> we get</p>
 <div class="math notranslate nohighlight">
 \[
    \Delta \vartheta_i = \Delta q_0 \,| r + \frac{\text{e}^{-i \frac{\pi}{4}}}{b \sqrt{\omega}} |
 \]</div>
-<p>and
-$<span class="math notranslate nohighlight">\(
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
 \varphi = - \text{arctan}(\frac{\frac{1}{2}\frac{\sqrt{2}}{b \sqrt{\omega}}} {r + \frac{1}{2} \frac{\sqrt{2}}{b \sqrt{\omega}}})
-\)</span>$</p>
+\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -500,16 +512,23 @@ $<span class="math notranslate nohighlight">\(
 <img alt="../_images/c59d42d48b5072b85cfc3f7b95062156de49d90a8fab619d6dc0e1bb3ce4655f.png" src="../_images/c59d42d48b5072b85cfc3f7b95062156de49d90a8fab619d6dc0e1bb3ce4655f.png" />
 </div>
 </div>
+</section>
 <section id="two-infinite-half-spaces">
 <h2>Two infinite half-spaces<a class="headerlink" href="#two-infinite-half-spaces" title="Permalink to this heading">#</a></h2>
 <p>To treat two infinite half-spaces, which is closer to reality, we use the following thermal equivalent circuit diagram.
 The total heat input released into the room is <span class="math notranslate nohighlight">\(\phi_1 + \phi_2 = \phi\)</span>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s2">&quot;UHR_2.jpg&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="../_images/6f24790ce7c59eec196f211c305766bb1a41edeaa9dbf6db0b66e67e5fc056c0.jpeg" src="../_images/6f24790ce7c59eec196f211c305766bb1a41edeaa9dbf6db0b66e67e5fc056c0.jpeg" />
 </div>
@@ -564,7 +583,7 @@ The total heat input released into the room is <span class="math notranslate noh
 <div class="full-width admonition">
 <p class="admonition-title">Questions</p>
 <ul class="simple">
-<li><p>given a 20 m² office space in which 2 people are working on computers. The concrete ceiling is the only solid component. The solar input during the day is around 500 W/m². Estimate the resulting temperature amplitudes using the first model.</p></li>
+<li><p>given a 20 m² office space in which 2 people are working on computers. The concrete ceiling is the only solid component. The solar input during the day is around 500 W. Estimate the resulting temperature amplitudes using the first model.</p></li>
 <li><p>the room is now being fitted with acoustic absorbers (approx. 10 cm thick). For this purpose, 50% of the ceiling surface will also be covered with these. What temperature amplitudes will result now?</p></li>
 <li><p>the components do not fulfil the half-space condition. How does this affect the results?</p></li>
 </ul>
@@ -632,6 +651,7 @@ The total heat input released into the room is <span class="math notranslate noh
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-infinite-half-space">One infinite half-space</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-infinite-half-spaces">Two infinite half-spaces</a></li>
 </ul>
   </nav></div>
