@@ -3,10 +3,11 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: Intro_HydroThermal
-  sections:
-  - file: Ch_1/SemiInfinitySpace_240313
-  - file: Ch_1/HalfSpaceTempFluc_240321
-  - file: Ch_1/HalfSpaceTempRoom_240401
-  - file: Ch_1/240418_TheWall
+parts:
+- caption: Chapter 1
+  chapters:
+    - file: Intro_HydroThermal
+    - file: Ch_1/SemiInfinitySpace_240313
+    - file: Ch_1/HalfSpaceTempFluc_240321
+    - file: Ch_1/HalfSpaceTempRoom_240401
+    - file: Ch_1/240418_TheWall
