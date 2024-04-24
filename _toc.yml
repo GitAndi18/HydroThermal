@@ -1,13 +1,11 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
 root: intro
-parts:
-- caption: Chapter 1
-  chapters:
-    - file: Intro_HydroThermal
-    - file: Ch_1/SemiInfinitySpace_240313
-    - file: Ch_1/HalfSpaceTempFluc_240321
-    - file: Ch_1/HalfSpaceTempRoom_240401
-    - file: Ch_1/240418_TheWall
+
+chapters:
+- file: Intro_HydroThermal
+- file: Ch_1/SemiInfinitySpace_240313
+- file: Ch_1/HalfSpaceTempFluc_240321
+- file: Ch_1/HalfSpaceTempRoom_240401
+- file: Ch_1/240418_TheWall
