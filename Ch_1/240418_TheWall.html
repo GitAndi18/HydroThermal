@@ -364,7 +364,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -380,6 +382,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pole-matrix">4-pole Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-for-delta-vartheta-and-delta-q-i">Results for <span class="math notranslate nohighlight">\(\Delta \vartheta\)</span> and <span class="math notranslate nohighlight">\(\Delta q_i\)</span></a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -474,6 +485,110 @@ document.write(`
 <li><p>modify the material properties (start the rocket button…) and look what happens!</p></li>
 </ul>
 </div>
+<section id="pole-matrix">
+<h2>4-pole Matrix<a class="headerlink" href="#pole-matrix" title="Permalink to this heading">#</a></h2>
+<p>Using Fourier’s 1st law, the flux density <span class="math notranslate nohighlight">\(q(x,t)\)</span> can be calculated from the above solution.</p>
+<p>Since in the following we are only interested in the temperature <span class="math notranslate nohighlight">\(\Delta \vartheta\)</span> and flux density amplitudes <span class="math notranslate nohighlight">\(\Delta q\)</span> at the surfaces, the results can be formulated as a 2x2 matrix equation similar to a 4-pole with two inputs and two outputs.
+datrix}
+]
+$$</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \begin{pmatrix} \Delta \vartheta_{out} \\ \Delta q_{out} \end{pmatrix} = 
+    \begin{pmatrix} m_{11} &amp; m_{12} \\ m_{21} &amp; m_{22} \end{pmatrix}
+    \begin{pmatrix} \Delta \vartheta_{in} \\ \Delta q_{in} \end{pmatrix}
+\end{split}\]</div>
+<p>The elements of the matrix <span class="math notranslate nohighlight">\(M\)</span> are <span class="math notranslate nohighlight">\(m_{11} = \cosh(\hat{d})\)</span>, <span class="math notranslate nohighlight">\(m_{22} = m_{11}\)</span>, <span class="math notranslate nohighlight">\(m_{12} = -\hat{H} \sinh(\hat{d})\)</span>, <span class="math notranslate nohighlight">\(m_{21} = -\frac{1}{\hat{H}} \sinh(\hat{d})\)</span>
+and <span class="math notranslate nohighlight">\(\hat{H} = \frac{\lambda}{\sigma}(1 + \text{i})\)</span>.</p>
+<p>The following results for the determinant:</p>
+<div class="math notranslate nohighlight">
+\[\text{Det}(M) = 1\]</div>
+<p>An example should show how to calculate with it. To do this, we look at a wall that is exposed to solar radiation. We are interested in the temperature amplitude <span class="math notranslate nohighlight">\(\Delta \vartheta\)</span> caused by the radiation as a function of the contact resistance <span class="math notranslate nohighlight">\(r\)</span> on the surface. As the system ends on the inside, we need to specify a suitable boundary condition. For buildings without internal insulation, we choose an isothermal termination, which can be justified by a large thermal capacity on the inside. The system then looks like this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;4polr.jpg&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/08ce72e9727a9ddaf44e1a6054a9ff6d55e3b1028f36f4488942f3378b84c79c.jpeg" src="../_images/08ce72e9727a9ddaf44e1a6054a9ff6d55e3b1028f36f4488942f3378b84c79c.jpeg" />
+</div>
+</div>
+<div class="full-width admonition">
+<p class="admonition-title">Tasks</p>
+<p>Show that the following equations are obtained for the temperature amplitude on the outside and for the heat flux density on the inside under the above boundary condition.</p>
+<p>Discuss the results shown in the plot below.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[
+    \Delta \vartheta = m_{12}\, \frac{\Delta \vartheta_e\,  + \Delta q_s\, r}{m_{12} - m_{11}\, r}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    \Delta q_i = \frac{\Delta \vartheta_e + \Delta q_s\, r}{m_{11}\, r - m_{12}}
+\]</div>
+</section>
+<section id="results-for-delta-vartheta-and-delta-q-i">
+<h2>Results for <span class="math notranslate nohighlight">\(\Delta \vartheta\)</span> and <span class="math notranslate nohighlight">\(\Delta q_i\)</span><a class="headerlink" href="#results-for-delta-vartheta-and-delta-q-i" title="Permalink to this heading">#</a></h2>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dTe</span>   <span class="o">=</span> <span class="mi">8</span>
+<span class="n">tau</span>   <span class="o">=</span> <span class="mf">0.8</span>                <span class="c1"># solar transmission</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span>                <span class="c1"># solar absorption</span>
+<span class="n">dqs</span>   <span class="o">=</span> <span class="mi">300</span> <span class="o">*</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">alpha</span>  <span class="c1"># absorbed solar radiation on the surface</span>
+
+<span class="n">lam</span>   <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">rhocp</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000</span>
+<span class="n">d</span>     <span class="o">=</span> <span class="mf">0.3</span>                <span class="c1"># wall thickness</span>
+
+<span class="n">T</span>     <span class="o">=</span> <span class="mi">24</span><span class="o">*</span><span class="mi">3600</span>            <span class="c1"># period</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">lam</span><span class="o">/</span><span class="n">rhocp</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">H</span>     <span class="o">=</span> <span class="n">lam</span><span class="o">/</span><span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span>
+<span class="n">dd</span>    <span class="o">=</span> <span class="n">d</span><span class="o">/</span><span class="n">sigma</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="p">)</span>
+<span class="n">m11</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+<span class="n">m22</span>   <span class="o">=</span> <span class="n">m11</span>
+<span class="n">m12</span>   <span class="o">=</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="n">H</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+<span class="n">m21</span>   <span class="o">=</span> <span class="o">-</span><span class="n">H</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+
+<span class="n">r</span>     <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1"># resistance</span>
+<span class="n">dT</span>    <span class="o">=</span> <span class="n">m12</span> <span class="o">*</span> <span class="p">(</span><span class="n">dTe</span> <span class="o">+</span> <span class="n">dqs</span><span class="o">*</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m12</span> <span class="o">-</span> <span class="n">m11</span><span class="o">*</span><span class="n">r</span><span class="p">)</span>
+<span class="n">dqi</span>   <span class="o">=</span> <span class="p">(</span><span class="n">dTe</span> <span class="o">+</span> <span class="n">dqs</span><span class="o">*</span><span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">m11</span><span class="o">*</span><span class="n">r</span> <span class="o">-</span> <span class="n">m12</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Absolute amount of amplitudes vs $r$&#39;</span><span class="p">)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tab:red&#39;</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$r$ / (m²K/W)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Delta \vartheta$ / K&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dT</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;+&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>  <span class="c1"># instantiate a second axes that shares the same x-axis</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tab:blue&#39;</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Delta q_i$ / (W/m²)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># we already handled the x-label with ax1</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">dqi</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># otherwise the right y-label is slightly clipped</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../_images/410abb078e8d4ae43043efd0a1d4ef7ffe6165c2f86354c4cc55c6c8c2aac0d7.png" src="../_images/410abb078e8d4ae43043efd0a1d4ef7ffe6165c2f86354c4cc55c6c8c2aac0d7.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -525,6 +640,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pole-matrix">4-pole Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results-for-delta-vartheta-and-delta-q-i">Results for <span class="math notranslate nohighlight">\(\Delta \vartheta\)</span> and <span class="math notranslate nohighlight">\(\Delta q_i\)</span></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
